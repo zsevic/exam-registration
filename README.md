@@ -1,12 +1,12 @@
-Project for Database programming course
----
+# exam-registration
 
-#### Task (in Serbian)
-Napisati program koji za studenta čiji se indeks unosi najpre proverava da li je upisao bar tri godine. Ukoliko jeste, ispisuju se numerisana lista svih nepoloženi ispiti koji su obavezni na njegovom smeru. U suprotnom se ispisuje odgovarajuća poruka. Nakon toga, potencijalno više puta, bira se redni broj predmeta koji se prijavljuje u ispitnom roku jun 2015. Klikom na dugme DODAJ taj ispit se prijavljuje.
-Pre pokretanja programa uneti podatke o novom ispitnom roku jun 2015.
-Prijava jednog ispita predstavlja jednu transakciju.
+> Project for Database programming course
 
-### Used technologies
-* Java
-* IBM DB2
-* JDBC
+### :information_source: Description (in Serbian)
+
+Napisati program koji za studenta čiji se indeks unosi najpre proverava da li je upisao bar tri godine. Ukoliko jeste, ispisuju se numerisana lista svih nepoloženi ispiti koji su obavezni na njegovom smeru. U suprotnom se ispisuje odgovarajuća poruka. Nakon toga, potencijalno više puta, bira se redni broj predmeta koji se prijavljuje u ispitnom roku jun 2015. Klikom na dugme DODAJ taj ispit se prijavljuje. Pre pokretanja programa uneti podatke o novom ispitnom roku jun 2015. Prijava jednog ispita predstavlja jednu transakciju.
+
+### :package: Technologies used
+
+* Java (JDBC)
+* SQL (IBM DB2)
