@@ -17,20 +17,20 @@ public class GUI {
   public GUI() {
     mainFrame = new JFrame("Prijavljivanje ispita");
     mainFrame.setSize(600, 1000);
-	mainFrame.setLayout(new GridLayout(5, 1));
-	
+    mainFrame.setLayout(new GridLayout(5, 1));
+
     mainFrame.addWindowListener(new WindowAdapter() {
       public void windowClosing(WindowEvent windowEvent) {
         try {
           Database.con.close();
-        } catch(Exception e) {
+        } catch (Exception e) {
           e.printStackTrace();
         }
         System.exit(0);
       }
 
-	});
-	
+    });
+
     headerLabel = new JLabel("", JLabel.CENTER);
     headerLabel.setText("Prijava ispita za ispitni rok jun 2015");
 
@@ -49,8 +49,8 @@ public class GUI {
     mainFrame.add(indexPanel);
     mainFrame.add(statusLabel);
     mainFrame.setVisible(true);
-	
-	showIndex();
+
+    showIndex();
   }
 
   public void showIndex() {
@@ -65,43 +65,43 @@ public class GUI {
           final int indeks = Integer.parseInt(indexText.getText());
           System.out.println("res:" + indeks);
           int res = Database.registeredYears(indeks);
-		  
-		  if (res == 0){
-			statusLabel.setText("Indeks nije pronadjen u bazi!");
-		  } else if (res < 3) {
+
+          if (res == 0) {
+            statusLabel.setText("Indeks nije pronadjen u bazi!");
+          } else if (res < 3) {
             statusLabel.setText("Student je upisao manje od tri godine");
           } else {
             String exams = Database.unpassedExams(indeks);
-			
-			if (exams == null) {
+
+            if (exams == null) {
               statusLabel.setText("greska!");
               examsPanel.removeAll();
               return;
-			}
-			
+            }
+
             String unpassedExams = Database.unpassedExams(indeks);
             statusLabel.setText(unpassedExams);
             showExams(indeks);
-		  }
-		  
-        } catch(NumberFormatException e1) {
+          }
+
+        } catch (NumberFormatException e1) {
           statusLabel.setText("Unesite pravilno!");
           examsPanel.removeAll();
           e1.printStackTrace();
         }
       }
-	});
-	
+    });
+
     indexPanel.add(indexLabel);
     indexPanel.add(indexText);
     indexPanel.add(confirmButton);
-	
-	mainFrame.setVisible(true);
+
+    mainFrame.setVisible(true);
   }
 
   public void showExams(final int indeks) {
-	System.out.println(indeks);
-	
+    System.out.println(indeks);
+
     JLabel ordinalNumberLabel = new JLabel("Redni broj ispita: ", JLabel.CENTER);
     final JTextField ordinalNumberText = new JTextField(6);
     JButton registerButton = new JButton("Dodaj");
@@ -112,34 +112,34 @@ public class GUI {
         try {
           int i = Integer.parseInt(ordinalNumberText.getText());
           int res = Database.registerExam(indeks, Database.examsLeft.get(i - 1));
-		  
-		  if (res != -1) {
+
+          if (res != -1) {
             String unpassedExams = Database.unpassedExams(indeks);
             statusLabel.setText(unpassedExams);
             registrationLabel.setText("Ispit je uspesno dodat!");
-	
-		} else {
+
+          } else {
             registrationLabel.setText("Ispit nije dodat!");
-		  }
-		  
-        } catch(Exception e1) {
+          }
+
+        } catch (Exception e1) {
           registrationLabel.setText("Unesi pravilno redni broj!");
-		
-		}
+
+        }
       }
-	});
-	
-	numberPanel.removeAll();
+    });
+
+    numberPanel.removeAll();
     numberPanel.add(ordinalNumberLabel);
     numberPanel.add(ordinalNumberText);
     numberPanel.add(registerButton);
     numberPanel.add(registrationLabel);
-	
-	examsPanel.removeAll();
+
+    examsPanel.removeAll();
     examsPanel.add(numberPanel);
     examsPanel.add(registrationLabel);
-	
-	mainFrame.add(examsPanel);
+
+    mainFrame.add(examsPanel);
     mainFrame.setVisible(true);
   }
 

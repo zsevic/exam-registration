@@ -9,8 +9,8 @@ public class Main {
     try {
       Database db = new Database();
       GUI gui = new GUI();
-    
-    } catch(Exception e) {
+
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }
